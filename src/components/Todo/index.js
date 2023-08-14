@@ -7,11 +7,16 @@ const Home = () => {
   // const [value1, setValue1] = useState("");
   const { todo } = useSelector((s) => s);
   const dispatch = useDispatch();
-
+const enter = (e) =>{
+  if(e.key === 'Enter'){
+    dispatch(addText(value)) 
+  }
+}
   return (
     <div className="container w-[1140px] mx-auto">
       <div className="flex flex-col justify-center items-center gap-4 pt-4 bg-white">
         <input
+        onKeyDown={enter}
           onChange={(e) => setValue(e.target.value)}
           type="search"
           id="default-search"
