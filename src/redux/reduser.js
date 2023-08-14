@@ -10,9 +10,6 @@ export const Reduser = (state = initialState, action) => {
                 text:action.payload,
                 // image:action.payload,
              }]};
-             
-
-             
              case 'DEL_TODO':
                 return {...state, todo: state.todo.filter(el => el.id !== action.payload.id)}
         default:
