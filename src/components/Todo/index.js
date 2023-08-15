@@ -1,18 +1,24 @@
 import { useRef, useState } from "react";
-import { addText, delText } from "../../redux/action";
+import { addText, delALL, delText } from "../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
-
+import './index.scss'
+import { type } from "@testing-library/user-event/dist/type";
 const Home = () => {
   const [value, setValue] = useState("");
-  // const [value1, setValue1] = useState("");
-  const divRef = useRef('nkl');
   const { todo } = useSelector((s) => s);
   const dispatch = useDispatch();
-  const enter = (e) => {
-    if (value.trim() !== "" && e.key === "Enter") {
-      dispatch(addText(value));
-      setValue("");
+
+  const inp = () => {
+    let hh = document.querySelector('.hhh')
+        hh.innerHTML = '<div> <p>Вопросы есть ? </p> <input maxLength="15" type="text"/> </div>'
     }
+  const enter = (e) => {
+    if (value.trim() !== "" && e.key === "Enter" ? (dispatch(addText(value)),setValue('')) : '' ){  
+      
+    }else if(value === '0112'){
+      inp()
+    }
+    
   };
   return (
     <div className="container w-[1140px] mx-auto">
@@ -23,41 +29,41 @@ const Home = () => {
           onChange={(e) => {
             setValue(e.target.value);
           }}
-          type="search"
+          type={+value || value === '0' ? 'password' : 'text'}
+         
           id="default-search"
           className=" p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="text"
           required
         />
-        {/* <input
-          onChange={(e) => {
-            setValue1(e.target.value);
-          }}
-          type="search"
-          id="default-search"
-          className=" p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="img"
-          required
-        /> */}
-  <h1 ref={divRef}></h1>
+        <div className="hhh flex-col text-center"></div>
+
+        <div className="flex gap-4">
         <button
-          onClick={() => value === '' ? divRef : 
-          (dispatch(addText(value)),setValue(''))
-          //   {
-          //   if (value === "") {
-          //     return divRef
-           
-          //   } else if (value.trim() !== "") {
-          //     dispatch(addText(value));
-          //     setValue("");
-          //   }
-          // }
+          onClick={() => {
+            if(value === '0112'){
+              inp()
+              setValue('')
+            }else if(value.trim() !== ""){
+              dispatch(addText(value));
+              setValue("")
+            }
+          }
         }
           type="button"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
         >
           add
         </button>
+          {
+            todo.length > 1 ? <button 
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          onClick={() =>{
+            dispatch(delALL(value))
+          }}>del all</button>
+          : null
+          }
+        </div>
       </div>
 
       <div
@@ -67,7 +73,10 @@ const Home = () => {
         {todo?.map((el) => (
           <div>
             <div className="flex justify-between items-center">
+              <div className="flex">
+              <input type="checkbox" />
               <h1>{el.text}</h1>
+              </div>
               <button
                 onClick={() => {
                   dispatch(delText(el));
