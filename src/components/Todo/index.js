@@ -18,7 +18,6 @@ const Home = () => {
     }else if(value === '0112'){
       inp()
     }
-    
   };
   return (
     <div className="container w-[1140px] mx-auto">
@@ -84,13 +83,11 @@ const Home = () => {
               <button
               style={{color: red ? 'red' : 'black'}}
                 onClick={() => {
-                  check ? dispatch(delText(el)) : setRed(red)
-                 
+                  check ? dispatch(delText(el)) : setRed(red)                 
                 }}
               >
                 delete
               </button>
-              {/* <img src={el.image} alt="" /> */}
             </div>
           </div>
         ))}
