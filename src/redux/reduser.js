@@ -23,11 +23,7 @@ export const Reduser = (state = initialState, action) => {
         todo: state.todo.filter((el) => el.id !== action.payload.id),
       };
       case 'ALL_DEL':
-        return {
-            ...state,
-             todo: state.todo.filter((el) => el.id === action.payload.id)}
-    //   case 'CHECK_TODO': 
-    //   return 
+        return {...state,todo: state.todo.filter((el) => el.id === action.payload.id)};
     default:
       return state;
   }

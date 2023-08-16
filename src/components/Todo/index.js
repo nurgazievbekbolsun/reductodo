@@ -7,7 +7,7 @@ const Home = () => {
   const [value, setValue] = useState("");
   const { todo } = useSelector((s) => s);
   const dispatch = useDispatch();
-
+ const [check,setCheck] = useState(false)
   const inp = () => {
     let hh = document.querySelector('.hhh')
         hh.innerHTML = '<div><p>Что хотите ? </p> <input id="impu" maxLength="15" type="text"/> </div>'
@@ -73,8 +73,9 @@ const Home = () => {
           <div>
             <div className="flex justify-between items-center">
               <div className="flex">
-              <input type="checkbox" />
-              <h1>{el.text}</h1>
+              <input  onClick={() => setCheck(!check)} type="checkbox" />
+              <h1 style={{ textDecorationLine: check ? 'line-through' : ''}}
+              >{el.text}</h1>
               </div>
               <button
                 onClick={() => {
