@@ -10,11 +10,10 @@ const Home = () => {
 
   const inp = () => {
     let hh = document.querySelector('.hhh')
-        hh.innerHTML = '<div> <p>Вопросы есть ? </p> <input maxLength="15" type="text"/> </div>'
+        hh.innerHTML = '<div><p>Что хотите ? </p> <input id="impu" maxLength="15" type="text"/> </div>'
     }
   const enter = (e) => {
     if (value.trim() !== "" && e.key === "Enter" ? (dispatch(addText(value)),setValue('')) : '' ){  
-      
     }else if(value === '0112'){
       inp()
     }
@@ -34,7 +33,7 @@ const Home = () => {
           id="default-search"
           className=" p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="text"
-          required
+          // required
         />
         <div className="hhh flex-col text-center"></div>
 
