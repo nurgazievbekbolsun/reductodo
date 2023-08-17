@@ -64,7 +64,6 @@ const Home = () => {
           }
         </div>
       </div>
-
       <div
         className="rounded px-2
        bg-gray-400  mt-10 mx-auto w-[400px] h-[auto] "
